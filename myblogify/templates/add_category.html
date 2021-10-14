@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Create a New Blog Category
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+    {% block content %}
+    {% if user.is_authenticated %}
+
+        <h1> Add New Category ... </h1>
+        <br><br>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <br><br>
+                <button class="btn btn-secondary">Add Category</button>
+            </form>
+        </div>
+        <script>
+            var name = "{{ user.id }}";
+            document.getElementById("user").value = name;
+
+        </script>
+    {% else %}
+    <h1>You are not allowed to make any changes to the posts</h1>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

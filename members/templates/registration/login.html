@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Login
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+    {% block content %}
+
+        <h1> Login ... </h1>
+    <br><br>
+    <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+              <div class="form-group">
+                <label class="form-label">Username:</label>
+                <input type="text" class="form-control" name="username" placeholder="Username">
+              </div>
+            <br>
+              <div class="form-group">
+                <label class="form-label">Password:</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+
+            <br><br>
+            <button class="btn btn-secondary">Login</button></form><br>
+            <small><a href="{% url 'register' %}">Not a Registered User? Register Here</a></small>
+    </div>
+    {% endblock %}
+</body>
+</html>

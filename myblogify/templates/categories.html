@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    {% if category_posts %}
+
+        <h1>{{ cats }} Categories</h1>
+        <br>
+        <ul>
+            {% for post in category_posts %}
+                <div class="col-12">
+                    <h4><a href="{% url 'artical-details' post.pk %}" >{{post.title}}</a>
+                    <small style="font-size: 12px;">
+                    {% if user.is_authenticated and user.id == post.author.id %}
+                        <a href="{% url 'update_post' post.pk %}" style="color: #09009B;">(Edit)</a>
+                        <a href="{% url 'delet_post' post.pk %}" style="color: #09009B;">(delet)</a>
+                    {% endif %}
+                    </small>
+                    </h4>
+                    <p class="body-text"><b>Category: </b><a href="{% url 'category' post.category|slugify %}" style="text-decoration: none;">{{post.category}}</a><br>
+                        <b>Author Name: </b>{{post.author.first_name}} {{post.author.last_name}} <br><b>Date: </b><small>{{ post.post_date }}</small>
+
+
+                    <br>
+                    {{ post.snippet }}
+                    <strong><small> ... <a href="{% url 'artical-details' post.pk %}" style="color: #000000">(Read More)</a></small></strong>
+                    </p>
+                </div>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>Sorry, This page doesn't exist</h1>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

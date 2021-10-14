@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Blog Categories
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+    {% block content %}
+
+    <h1>Blog Categories</h1>
+    <br>
+
+    {% for item in cat_menu_list %}
+    <h4><a class="dropdown-item" href="{% url 'category' item|slugify %}"><li>{{ item }}</li></a></h4>
+    {% endfor %}
+
+    {% endblock %}
+</body>
+</html>
